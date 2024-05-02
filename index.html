@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>ThreeJS Practice</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <!--script src="./jsm/three.min.js"></script-->
+  <!--script src="./jsm/three.module.min.js"></script-->
+  <script type="importmap">
+            {
+                "imports": {
+                    "three": "./jsm/three.module.js",
+                    "GLTFLoader" : "./jsm/loaders/GLTFLoader.js",
+                    "OrbitControls" : "./jsm/controls/OrbitControls.js",
+                    "EffectComposer" : "./jsm/postprocessing/EffectComposer.js",
+                    "RenderPass" : "./jsm/postprocessing/RenderPass.js",
+                    "UnrealBloomPass" : "./jsm/postprocessing/UnrealBloomPass.js",
+                    "VRButton" : "./jsm/webxr/VRButton.js",
+                    "TextGeometry" : "./jsm/geometries/TextGeometry.js"
+                }
+            }
+        </script>
+  <style>
+  
+  </style>
+</head>
+
+<body>
+  <script type="module" src="./main.js"></script>
+  <!-- <div class="title-2">STORY OF SEOUL</div>
+  <!-- <div class="myButton2" id="start-audio-button">LISTEN</div> -->
+
+  <!-- <div class="title-1">PLASTIC CITY</div> --> 
+ <!-- <div class="imgWrapper"> -->
+  <!-- <div><img class="img-1" src="./assets/realimg/img1.jpg" alt=""></div>
+  <div><img class="img-2" src="./assets/realimg/img2.jpg" alt=""></div>
+  <div><img class="img-3" src="./assets/realimg/img3.jpg" alt=""></div>
+  <div><img class="img-4" src="./assets/realimg/img4.jpg" alt=""></div>
+  <div><img class="img-5" src="./assets/realimg/img5.jpg" alt=""></div>
+  <div><img class="img-6" src="./assets/realimg/img6.jpg" alt=""></div>
+  <div><img class="img-7" src="./assets/realimg/img7.jpg" alt=""></div>
+  <div><img class="img-8" src="./assets/realimg/img8.jpg" alt=""></div>
+  <div><img class="img-9" src="./assets/realimg/img9.jpg" alt=""></div> -->
+  <!-- <audio src="./assets/sound/mysound.mp3" id="myAudio"></audio> -->
+ <!-- </div> -->
+
+ <!-- <div class="information">
+ <a onClick="window.location.reload()" style="cursor: pointer;">Return Position</a>
+ </div> 
+ <div class="information-eng">
+  I found the beauty of recording 
+  moments through photos, 
+  each with its own unique perspective, 
+  much like a diverse music playlist. 
+  Inspired by this, I created a website 
+  featuring my captures of Seoul.
+ </div>
+ <div class="mouse">
+  <img class="mouse-img" src="./assets/img/mouse.png" alt="">
+ </div> -->
+</body>
+<script>
+
+let imgWrapper = document.querySelector(".imgWrapper");
+
+
+  document.addEventListener("mousemove", (e) => {
+
+  const xRelativeToHeader = e.clientX / imgWrapper.clientWidth
+  const yRelativeToHeader = e.clientY / imgWrapper.clientHeight
+  console.log(yRelativeToHeader)
+    document.querySelector(".img-1").style.transform = `translate(${(xRelativeToHeader * -50)}px, ${yRelativeToHeader * -50}px)`
+    document.querySelector(".img-2").style.transform = `translate(${(xRelativeToHeader * 80)}px, ${yRelativeToHeader * 50}px)`
+    document.querySelector(".img-3").style.transform = `translate(${(xRelativeToHeader * -30)}px, ${yRelativeToHeader * 30}px)`
+    document.querySelector(".img-4").style.transform = `translate(${(xRelativeToHeader * -45)}px, ${yRelativeToHeader * -45}px)`
+    document.querySelector(".img-5").style.transform = `translate(${(xRelativeToHeader * 70)}px, ${yRelativeToHeader * 40}px)`
+    document.querySelector(".img-6").style.transform = `translate(${(xRelativeToHeader * -40)}px, ${yRelativeToHeader * 50}px)`
+    document.querySelector(".img-7").style.transform = `translate(${(xRelativeToHeader * -30)}px, ${yRelativeToHeader * -30}px)`
+    document.querySelector(".img-8").style.transform = `translate(${(xRelativeToHeader * 40)}px, ${yRelativeToHeader * 40}px)`
+    document.querySelector(".img-9").style.transform = `translate(${(xRelativeToHeader * -60)}px, ${yRelativeToHeader * 70}px)`
+ 
+    })
+
+</script>
+
+<!-- <script src="sketch.js"></script> -->
+</html>

@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap');
+@font-face {
+  src: url(./assets/font/InklinationTRIAL-SmBd.otf);
+  font-family: Inklination;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  letter-spacing: 2px;
+}
+
+
+.myButton2 {
+  font-family: 'Inklination', sans-serif;
+  font-size: 50px;
+  cursor: pointer;
+  position: absolute;
+  width:250px;
+  height: 45px;
+  color: #00fff7;
+  right: 595px;
+  /* transform: translateX(-50%); */
+  bottom: 100px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 90px;
+  /* border: solid 1px black; */
+}
+.myButton2:hover {
+  transform:  scale(1.05);
+}
+
+.title-1 {
+  font-family: 'Inklination', sans-serif;
+  position: absolute;
+  color: #FF2850;
+  top: 50%;
+  transform: translateY(-50%);
+  right:65px;
+  font-size: 6em;
+  z-index: 1;
+  opacity: 100%;
+}
+.title-2 {
+  font-family: 'Inklination', sans-serif;
+  position: absolute;
+  color: #ffffff;
+  top: 20%;
+  left:155px;
+  font-size: 40px;
+  z-index: 1;
+  opacity: 100%;
+}
+
+.img-1 {
+  position: absolute;
+  top: 550px;
+  left:250px;
+  width: 200px;
+  height: auto;
+  opacity: 70%;
+  transition: 1s;
+}
+
+.img1-info {
+  display: none;
+  position: absolute;
+  color: rgb(165, 165, 165);
+  top: 900px;
+  left:130px; 
+}
+
+.img-2 {
+  position: absolute;
+  top: 260px;
+  right:440px;
+  width: 180px;
+  height: auto;
+  opacity: 90%;
+  transition: 1s;
+}
+
+.img-3 {
+  position: absolute;
+  top: 100px;
+  right:140px;
+  width: 180px;
+  height: auto;
+  opacity: 70%;
+  transition: 1s;
+}
+
+.img-4 {
+  position: absolute;
+  top: 650px;
+  right:540px;
+  width: 180px;
+  height: auto;
+  opacity: 100%;
+  transition: 1s;
+}
+
+.img-5 {
+  position: absolute;
+  top: 85px;
+  left:720px;
+  width: 160px;
+  height: auto;
+  opacity: 70%;
+  transition: 0.6s;
+}
+
+.img-6 {
+  position: absolute;
+  bottom: 85px;
+  right:240px;
+  width: 160px;
+  height: auto;
+  opacity: 90%;
+  transition: 0.6s;
+}
+
+.img-7 {
+  position: absolute;
+  top: 285px;
+  left:70px;
+  width: 160px;
+  height: auto;
+  opacity: 70%;
+  transition: 0.6s;
+}
+.img-8 {
+  position: absolute;
+  top: 45px;
+  left:220px;
+  width: 160px;
+  height: auto;
+  opacity: 70%;
+  transition: 0.6s;
+}
+
+.img-9 {
+  position: absolute;
+  bottom: 185px;
+  left:660px;
+  width: 160px;
+  height: auto;
+  opacity: 80%;
+  transition: 0.6s;
+}
+
+.imgWrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden; 
+  pointer-events: none;}
+
+  a {
+    text-decoration: none;
+    color :rgb(255,103,0);
+    width: 100%;
+  }
+  
+  .mouse{
+    position: absolute;
+    bottom: 30px;
+    left: 60px;
+    width: 200px;
+    height: auto;
+  }
+
+  .mouse:hover {
+transform: scale(1.03);
+  }
+
+  .mouse-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .information {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1em;
+    font-weight:500;
+    position: absolute;
+    color :rgb(255, 255, 255);
+    border-radius: 50px 50px 50px 50px;
+    bottom: 70px;
+    right: 80px;
+    white-space: pre-wrap;
+    width: 200px;
+    height: 55px;
+    border: 1.5px solid rgb(255,103,0);
+    text-align: center;
+    line-height:18px;
+  }
+  
+  .information a:hover {
+    color: #ffffff;
+  }
+
+  .information:hover {
+   transform: scale(1.01)
+  }
+
+
+  .information-eng {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    position: absolute;
+    font-weight: 500;
+    color :rgb(255, 255, 255);
+    top: 40px;
+    left: 70px;
+    white-space: pre-wrap;
+
+  }
+
+ 
