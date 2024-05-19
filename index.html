@@ -23,8 +23,9 @@
                 }
             }
         </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.min.js"></script>
   <style>
-  
+
   </style>
 </head>
 
@@ -33,8 +34,8 @@
   <!-- <div class="title-2">STORY OF SEOUL</div>
   <!-- <div class="myButton2" id="start-audio-button">LISTEN</div> -->
 
-  <!-- <div class="title-1">PLASTIC CITY</div> --> 
- <!-- <div class="imgWrapper"> -->
+  <!-- <div class="title-1">PLASTIC CITY</div> -->
+  <!-- <div class="imgWrapper"> -->
   <!-- <div><img class="img-1" src="./assets/realimg/img1.jpg" alt=""></div>
   <div><img class="img-2" src="./assets/realimg/img2.jpg" alt=""></div>
   <div><img class="img-3" src="./assets/realimg/img3.jpg" alt=""></div>
@@ -45,9 +46,9 @@
   <div><img class="img-8" src="./assets/realimg/img8.jpg" alt=""></div>
   <div><img class="img-9" src="./assets/realimg/img9.jpg" alt=""></div> -->
   <!-- <audio src="./assets/sound/mysound.mp3" id="myAudio"></audio> -->
- <!-- </div> -->
+  <!-- </div> -->
 
- <!-- <div class="information">
+  <!-- <div class="information">
  <a onClick="window.location.reload()" style="cursor: pointer;">Return Position</a>
  </div> 
  <div class="information-eng">
@@ -64,14 +65,14 @@
 </body>
 <script>
 
-let imgWrapper = document.querySelector(".imgWrapper");
+  let imgWrapper = document.querySelector(".imgWrapper");
 
 
   document.addEventListener("mousemove", (e) => {
 
-  const xRelativeToHeader = e.clientX / imgWrapper.clientWidth
-  const yRelativeToHeader = e.clientY / imgWrapper.clientHeight
-  console.log(yRelativeToHeader)
+    const xRelativeToHeader = e.clientX / imgWrapper.clientWidth
+    const yRelativeToHeader = e.clientY / imgWrapper.clientHeight
+    console.log(yRelativeToHeader)
     document.querySelector(".img-1").style.transform = `translate(${(xRelativeToHeader * -50)}px, ${yRelativeToHeader * -50}px)`
     document.querySelector(".img-2").style.transform = `translate(${(xRelativeToHeader * 80)}px, ${yRelativeToHeader * 50}px)`
     document.querySelector(".img-3").style.transform = `translate(${(xRelativeToHeader * -30)}px, ${yRelativeToHeader * 30}px)`
@@ -81,10 +82,11 @@ let imgWrapper = document.querySelector(".imgWrapper");
     document.querySelector(".img-7").style.transform = `translate(${(xRelativeToHeader * -30)}px, ${yRelativeToHeader * -30}px)`
     document.querySelector(".img-8").style.transform = `translate(${(xRelativeToHeader * 40)}px, ${yRelativeToHeader * 40}px)`
     document.querySelector(".img-9").style.transform = `translate(${(xRelativeToHeader * -60)}px, ${yRelativeToHeader * 70}px)`
- 
-    })
+
+  })
 
 </script>
 
 <!-- <script src="sketch.js"></script> -->
+
 </html>
