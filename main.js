@@ -88,8 +88,8 @@ async function init() {
       geometry,
       new THREE.MeshPhongMaterial({
         color: new THREE.Color(0Xbababa),
-        wireframe: true,
-        // opacity:0.8,
+        // wireframe: true,
+        opacity:0.4,
         transparent: true
       })
     );
@@ -101,9 +101,9 @@ async function init() {
     object.rotation.y = Math.random() * 2 * Math.PI;
     object.rotation.z = Math.random() * 2 * Math.PI;
     // object.scale.set(10, 10, 10)
-    object.scale.x = Math.random() + 35;
-    object.scale.y = Math.random() + 35;
-    object.scale.z = Math.random() + 35;
+    object.scale.x = Math.random() + 25;
+    object.scale.y = Math.random() + 25;
+    object.scale.z = Math.random() + 25;
     scene.add(object);
   }
 
@@ -139,8 +139,8 @@ async function init() {
 
   loader.load('./models/mygltf/island new.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
-    gltfmodel1.scale.set(100, 100, 100);
-    gltfmodel1.position.set(0, -10, 0)
+    gltfmodel1.scale.set(500, 500, 500);
+    gltfmodel1.position.set(0, -20, 0)
     gltfmodel1.rotation.z = 0.002;
     gltfmodel1.castShadow = true;
     gltfmodel1.receiveShadow = true;
@@ -225,7 +225,7 @@ for (let i = 0; i < 20; i++) {
   const gltf = await gltfLoader.loadAsync('./models/mygltf/character2.gltf');
   const mygltf = gltf.scene
   mygltf.position.set(0, 6, 200);
-  mygltf.scale.set(0.3, 0.3, 0.3);
+  mygltf.scale.set(0.7, 0.7, 0.7);
   mygltf.rotation.y = 10;
   mygltf.castShadow = true;
   mygltf.receiveShadow = true;
@@ -447,7 +447,7 @@ for (let i = 0; i < 20; i++) {
   });
 
   // Character의 초기 위치와 이동 속도 정의
-  const cubePosition = new THREE.Vector3(20, 5, 45);
+  const cubePosition = new THREE.Vector3(20, 20, 45);
   const moveSpeed = 0.5;
   const rotateSpeed = 1;
 
