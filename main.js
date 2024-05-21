@@ -148,9 +148,15 @@ async function init() {
 
     gltfmodel1.traverse(child => {
       if (child.isMesh) {
+        const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 1,
+        shading: THREE.FlatShading
+      });
         let pos = child.geometry.attributes.position;
         child.castShadow = true;
         child.receiveShadow = true;
+        child.material = material;
       }
     });
   })
@@ -222,24 +228,28 @@ for (let i = 0; i < 20; i++) {
     });
   });
 }
-  const gltf = await gltfLoader.loadAsync('./models/mygltf/character2.gltf');
-  const mygltf = gltf.scene
-  mygltf.position.set(0, 6, 200);
-  mygltf.scale.set(0.7, 0.7, 0.7);
-  mygltf.rotation.y = 10;
-  mygltf.castShadow = true;
-  mygltf.receiveShadow = true;
-  mygltf.traverse(child => {
-    if (child.isMesh) {
-      child.castShadow = true;
-      child.receiveShadow = true;
-    }
-  });
+  // const gltf = await gltfLoader.loadAsync('./models/mygltf/character2.gltf');
+  // const mygltf = gltf.scene
+  // mygltf.position.set(0, 6, 200);
+  // mygltf.scale.set(0.7, 0.7, 0.7);
+  // mygltf.rotation.y = 10;
+  // mygltf.castShadow = true;
+  // mygltf.receiveShadow = true;
+  // mygltf.traverse(child => {
+  //   if (child.isMesh) {
+  //     child.castShadow = true;
+  //     child.receiveShadow = true;
+  //   }
+  // });
 
-  scene.add(mygltf);
+  // scene.add(mygltf);
+  
+//하늘에서 오는 빛과 지면에 닿는 빛 
+  let HemiLight = new THREE.HemisphereLight(0xffffff, 0xfffff, 0.1);
+  scene.add(HemiLight);
 
-  let light = new THREE.DirectionalLight(0xfff9cf, 3.1);
-  light.position.set(100, 1000, 0);
+  let light = new THREE.DirectionalLight(0xfff9cf, 1.5);
+  light.position.set(10, 10, 0);
   light.target.position.set(0, 0, 0);
   light.castShadow = true;
   light.receiveShadow = true
@@ -259,7 +269,28 @@ for (let i = 0; i < 20; i++) {
 ;
   scene.add(light);
 
-  const Light2 = new THREE.AmbientLight(0xffffff, .4)
+  let light3 = new THREE.DirectionalLight(0xffffff, 1.5);
+  light3.position.set(-10, 6, 0);
+  light3.target.position.set(0, 0, 0);
+  light3.castShadow = true;
+  light3.receiveShadow = true
+  light3.shadow.camera.top = 2500;
+  light3.shadow.camera.bottom = -2500;
+  light3.shadow.camera.left = 2500;
+  light3.shadow.camera.right = -2500;
+  light3.shadow.mapSize.width = 8148;
+  light3.shadow.mapSize.height = 8148;
+  light3.shadow.camera.near = 1;
+  light3.shadow.camera.far = 2000;
+
+  light3.shadow.radius = 1;
+  light3.shadow.blurSamples = 205;
+  light3.shadow.focus = 1;
+  light3.shadow.bias = -0.001;;
+;
+  scene.add(light3);
+//environment light (no shadow, highlight)
+  const Light2 = new THREE.AmbientLight(0xffffff, 0.8)
   Light2.castShadow = true;
   Light2.position.set(0, 900, 0)
   scene.add(Light2)
