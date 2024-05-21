@@ -5,8 +5,6 @@ import { EffectComposer } from 'EffectComposer';
 import { RenderPass } from 'RenderPass';
 import { UnrealBloomPass } from 'UnrealBloomPass';
 import { VRButton } from 'VRButton';
-import { XRControllerModelFactory } from 'XRControllerModelFactory';
-import { XRHandModelFactory } from 'XRHandModelFactory';
 // import { TextGeometry } from 'TextGeometry';
 
 window.addEventListener('load', function () {
@@ -14,9 +12,6 @@ window.addEventListener('load', function () {
 });
 async function init() {
   var raycaster, mouse, container;
-  var hand1, hand2;
-  var controller1, controller2;
-  var controllerGrip1, controllerGrip2;
   //scene, camera, renderer
   let scene = new THREE.Scene();
   let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -46,48 +41,8 @@ async function init() {
   // renderer.setClearColor(0xf0f0f0);
 
   document.body.appendChild(renderer.domElement)
-  document.body.appendChild(VRButton.createButton(renderer, { sessionInit: { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking'] } }))
+  document.body.appendChild(VRButton.createButton(renderer))
 
-  // controllers
-
-  controller1 = renderer.xr.getController(0);
-  scene.add(controller1);
-
-  controller2 = renderer.xr.getController(1);
-  scene.add(controller2);
-
-  var controllerModelFactory = new XRControllerModelFactory();
-  var handModelFactory = new XRHandModelFactory();
-
-  // Hand 1
-  controllerGrip1 = renderer.xr.getControllerGrip(0);
-  controllerGrip1.add(controllerModelFactory.createControllerModel(controllerGrip1));
-  scene.add(controllerGrip1);
-
-  hand1 = renderer.xr.getHand(0);
-  hand1.add(handModelFactory.createHandModel(hand1));
-
-  scene.add(hand1);
-
-  // Hand 2
-  controllerGrip2 = renderer.xr.getControllerGrip(1);
-  controllerGrip2.add(controllerModelFactory.createControllerModel(controllerGrip2));
-  scene.add(controllerGrip2);
-
-  hand2 = renderer.xr.getHand(1);
-  hand2.add(handModelFactory.createHandModel(hand2));
-  scene.add(hand2);
-
-  //
-
-  var mygeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, - 1)]);
-
-  var line = new THREE.Line(mygeometry);
-  line.name = 'line';
-  line.scale.z = 5;
-
-  controller1.add(line.clone());
-  controller2.add(line.clone());
 
 
   scene.background = new THREE.Color(0x000000)
@@ -134,7 +89,7 @@ async function init() {
       new THREE.MeshPhongMaterial({
         color: new THREE.Color(0Xbababa),
         // wireframe: true,
-        opacity: 0.4,
+        opacity:0.4,
         transparent: true
       })
     );
@@ -194,10 +149,10 @@ async function init() {
     gltfmodel1.traverse(child => {
       if (child.isMesh) {
         const material = new THREE.MeshStandardMaterial({
-          color: 0xffffff,
-          roughness: 1,
-          shading: THREE.FlatShading
-        });
+        color: 0xffffff,
+        roughness: 1,
+        shading: THREE.FlatShading
+      });
         let pos = child.geometry.attributes.position;
         child.castShadow = true;
         child.receiveShadow = true;
@@ -210,69 +165,69 @@ async function init() {
 
 
   for (let i = 0; i < 20; i++) {
-    loader.load('./models/mygltf/dol.gltf', function (gltf) {
-      gltfmodel4 = gltf.scene;
-      gltfmodel4.scale.set(44000, 44000, 44000);
-      gltfmodel4.position.set(2000 * Math.random(), -2000 * Math.random(), 2000 * Math.random())
-      gltfmodel4.rotation.y = 100 * Math.random();
-      gltfmodel4.rotation.x = 100 * Math.random();
-      gltfmodel4.rotation.z = 100 * Math.random();
-      gltfmodel4.castShadow = true;
-      gltfmodel4.receiveShadow = true;
+  loader.load('./models/mygltf/dol.gltf', function (gltf) {
+    gltfmodel4 = gltf.scene;
+    gltfmodel4.scale.set(44000, 44000, 44000);
+    gltfmodel4.position.set(2000* Math.random(), -2000* Math.random(), 2000* Math.random())
+    gltfmodel4.rotation.y = 100*Math.random();
+    gltfmodel4.rotation.x = 100*Math.random();
+    gltfmodel4.rotation.z = 100*Math.random();
+    gltfmodel4.castShadow = true;
+    gltfmodel4.receiveShadow = true;
+    
+    scene.add(gltfmodel4);
 
-      scene.add(gltfmodel4);
+    gltfmodel4.traverse(child => {
+      if (child.isMesh) {
 
-      gltfmodel4.traverse(child => {
-        if (child.isMesh) {
-
-          const newMaterial = new THREE.MeshLambertMaterial({
-            // color: 0xffffff,
-            // emissive: 0x000000,
-            // tranctparency 
-            transparent: true,
-            opacity: 1,
-            wireframe: true,
-            // visible:true or false,
-            //FrontSide, BackSide, DoubleSide
-            side: THREE.DoubleSide,
-          });
-          child.material = newMaterial;
-        }
-      });
+        const newMaterial = new THREE.MeshLambertMaterial({
+          // color: 0xffffff,
+          // emissive: 0x000000,
+          // tranctparency 
+          transparent: true,
+          opacity: 1,
+          wireframe: true,
+          // visible:true or false,
+          //FrontSide, BackSide, DoubleSide
+          side: THREE.DoubleSide,
+        });     
+        child.material = newMaterial;
+      }
     });
-  }
+  });
+}
 
-  for (let i = 0; i < 20; i++) {
-    loader.load('./models/mygltf/dol.gltf', function (gltf) {
-      gltfmodel4 = gltf.scene;
-      gltfmodel4.scale.set(44000, 44000, 44000);
-      gltfmodel4.position.set(-2000 * Math.random(), 2000 * Math.random(), -2000 * Math.random())
-      gltfmodel4.rotation.y = 100 * Math.random();
-      gltfmodel4.rotation.x = 100 * Math.random();
-      gltfmodel4.rotation.z = 100 * Math.random();
-      gltfmodel4.castShadow = true;
-      gltfmodel4.receiveShadow = true;
-      scene.add(gltfmodel4);
+for (let i = 0; i < 20; i++) {
+  loader.load('./models/mygltf/dol.gltf', function (gltf) {
+    gltfmodel4 = gltf.scene;
+    gltfmodel4.scale.set(44000, 44000, 44000);
+    gltfmodel4.position.set(-2000* Math.random(), 2000* Math.random(), -2000* Math.random())
+    gltfmodel4.rotation.y = 100*Math.random();
+    gltfmodel4.rotation.x = 100*Math.random();
+    gltfmodel4.rotation.z = 100*Math.random();
+    gltfmodel4.castShadow = true;
+    gltfmodel4.receiveShadow = true;
+    scene.add(gltfmodel4);
 
-      gltfmodel4.traverse(child => {
-        if (child.isMesh) {
+    gltfmodel4.traverse(child => {
+      if (child.isMesh) {
 
-          const newMaterial = new THREE.MeshLambertMaterial({
-            // color: 0xffffff,
-            // emissive: 0x000000,
-            // tranctparency 
-            transparent: true,
-            opacity: 0.2,
-            wireframe: true,
-            // visible:true or false,
-            //FrontSide, BackSide, DoubleSide
-            side: THREE.DoubleSide,
-          });
-          child.material = newMaterial;
-        }
-      });
+        const newMaterial = new THREE.MeshLambertMaterial({
+          // color: 0xffffff,
+          // emissive: 0x000000,
+          // tranctparency 
+          transparent: true,
+          opacity: 0.2,
+          wireframe: true,
+          // visible:true or false,
+          //FrontSide, BackSide, DoubleSide
+          side: THREE.DoubleSide,
+        });     
+        child.material = newMaterial;
+      }
     });
-  }
+  });
+}
   // const gltf = await gltfLoader.loadAsync('./models/mygltf/character2.gltf');
   // const mygltf = gltf.scene
   // mygltf.position.set(0, 6, 200);
@@ -288,8 +243,8 @@ async function init() {
   // });
 
   // scene.add(mygltf);
-
-  //하늘에서 오는 빛과 지면에 닿는 빛 
+  
+//하늘에서 오는 빛과 지면에 닿는 빛 
   let HemiLight = new THREE.HemisphereLight(0xffffff, 0xfffff, 0.1);
   scene.add(HemiLight);
 
@@ -311,7 +266,7 @@ async function init() {
   light.shadow.blurSamples = 205;
   light.shadow.focus = 1;
   light.shadow.bias = -0.001;;
-  ;
+;
   scene.add(light);
 
   let light3 = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -332,9 +287,9 @@ async function init() {
   light3.shadow.blurSamples = 205;
   light3.shadow.focus = 1;
   light3.shadow.bias = -0.001;;
-  ;
+;
   scene.add(light3);
-  //environment light (no shadow, highlight)
+//environment light (no shadow, highlight)
   const Light2 = new THREE.AmbientLight(0xffffff, 0.8)
   Light2.castShadow = true;
   Light2.position.set(0, 900, 0)
