@@ -477,36 +477,36 @@ for (let i = 0; i < 20; i++) {
     }
   });
 
-  // Character의 초기 위치와 이동 속도 정의
-  const cubePosition = new THREE.Vector3(20, 20, 45);
-  const moveSpeed = 0.5;
-  const rotateSpeed = 1;
+  // // Character의 초기 위치와 이동 속도 정의
+  // const cubePosition = new THREE.Vector3(20, 20, 45);
+  // const moveSpeed = 0.5;
+  // const rotateSpeed = 1;
 
-  function updateCubePosition() {
-    if (keys['ArrowUp']) {
-      cubePosition.z -= moveSpeed;
-    }
-    if (keys['ArrowDown']) {
-      cubePosition.z += moveSpeed;
-    }
-    if (keys['ArrowLeft']) {
-      cubePosition.x -= rotateSpeed;
-      mygltf.rotation.y += 0.03;
-    }
-    if (keys['ArrowRight']) {
-      cubePosition.x += rotateSpeed;
-      mygltf.rotation.y -= 0.03;
-    }
+  // function updateCubePosition() {
+  //   if (keys['ArrowUp']) {
+  //     cubePosition.z -= moveSpeed;
+  //   }
+  //   if (keys['ArrowDown']) {
+  //     cubePosition.z += moveSpeed;
+  //   }
+  //   if (keys['ArrowLeft']) {
+  //     cubePosition.x -= rotateSpeed;
+  //     mygltf.rotation.y += 0.03;
+  //   }
+  //   if (keys['ArrowRight']) {
+  //     cubePosition.x += rotateSpeed;
+  //     mygltf.rotation.y -= 0.03;
+  //   }
 
-    // Cube의 위치 업데이트
-    mygltf.position.copy(cubePosition);
-    // 큐브를 타겟으로 지정
-    const cubeTarget = mygltf.position.clone();
+  //   // Cube의 위치 업데이트
+  //   mygltf.position.copy(cubePosition);
+  //   // 큐브를 타겟으로 지정
+  //   const cubeTarget = mygltf.position.clone();
 
-    // 카메라 타겟 설정
-    camera.lookAt(cubeTarget);
-    // camera.position.z = (cube.position.z + 10)
-  }
+  //   // 카메라 타겟 설정
+  //   camera.lookAt(cubeTarget);
+  //   // camera.position.z = (cube.position.z + 10)
+  // }
 
 
   function handleResize() {
@@ -521,21 +521,21 @@ for (let i = 0; i < 20; i++) {
   }
 
 
-  const mixer = new THREE.AnimationMixer(mygltf);
-  const hasAnimation = gltf.animations.length !== 0;
+  // const mixer = new THREE.AnimationMixer(mygltf);
+  // const hasAnimation = gltf.animations.length !== 0;
 
-  document.addEventListener('keydown', function (event) {
-    // 눌린 키의 keyCode 또는 key를 확인하여 화살표 키인지 확인
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown' ||
-      event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      if (hasAnimation) {
-        const action = mixer.clipAction(gltf.animations[0]);
-        action.play();
-      } else {
-        hasAnimation = false;
-      }
-    }
-  });
+  // document.addEventListener('keydown', function (event) {
+  //   // 눌린 키의 keyCode 또는 key를 확인하여 화살표 키인지 확인
+  //   if (event.key === 'ArrowUp' || event.key === 'ArrowDown' ||
+  //     event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+  //     if (hasAnimation) {
+  //       const action = mixer.clipAction(gltf.animations[0]);
+  //       action.play();
+  //     } else {
+  //       hasAnimation = false;
+  //     }
+  //   }
+  // });
 
   const clock = new THREE.Clock();
 
@@ -546,7 +546,7 @@ for (let i = 0; i < 20; i++) {
     mixer.update(delta);
     controls.update();
     gltfRotate();
-    updateCubePosition();
+    // updateCubePosition();
 
     composer.render();
     renderer.render(scene, camera);
