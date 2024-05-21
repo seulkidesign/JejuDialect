@@ -41,7 +41,7 @@ async function init() {
   // renderer.setClearColor(0xf0f0f0);
 
   document.body.appendChild(renderer.domElement)
-  document.body.appendChild(VRButton.createButton(renderer))
+  document.body.appendChild(VRButton.createButton(renderer,{ sessionInit: { optionalFeatures: [ 'local-floor', 'bounded-floor', 'hand-tracking' ] } }))
 
 
 
