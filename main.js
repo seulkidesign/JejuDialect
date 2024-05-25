@@ -212,70 +212,70 @@ async function init() {
   });
 
 
-  for (let i = 0; i < 20; i++) {
-  loader.load('./models/mygltf/dol.gltf', function (gltf) {
-    gltfmodel4 = gltf.scene;
-    gltfmodel4.scale.set(44000, 44000, 44000);
-    gltfmodel4.position.set(2000* Math.random(), -2000* Math.random(), 2000* Math.random())
-    gltfmodel4.rotation.y = 100*Math.random();
-    gltfmodel4.rotation.x = 100*Math.random();
-    gltfmodel4.rotation.z = 100*Math.random();
-    gltfmodel4.castShadow = true;
-    gltfmodel4.receiveShadow = true;
+//   for (let i = 0; i < 20; i++) {
+//   loader.load('./models/mygltf/dol.gltf', function (gltf) {
+//     gltfmodel4 = gltf.scene;
+//     gltfmodel4.scale.set(44000, 44000, 44000);
+//     gltfmodel4.position.set(2000* Math.random(), -2000* Math.random(), 2000* Math.random())
+//     gltfmodel4.rotation.y = 100*Math.random();
+//     gltfmodel4.rotation.x = 100*Math.random();
+//     gltfmodel4.rotation.z = 100*Math.random();
+//     gltfmodel4.castShadow = true;
+//     gltfmodel4.receiveShadow = true;
     
-    scene.add(gltfmodel4);
+//     scene.add(gltfmodel4);
 
-    gltfmodel4.traverse(child => {
-      if (child.isMesh) {
+//     gltfmodel4.traverse(child => {
+//       if (child.isMesh) {
 
-        const newMaterial = new THREE.MeshLambertMaterial({
-          // color: 0xffffff,
-          // emissive: 0x000000,
-          // tranctparency 
-          transparent: true,
-          opacity: 1,
-          wireframe: true,
-          // visible:true or false,
-          //FrontSide, BackSide, DoubleSide
-          side: THREE.DoubleSide,
-        });     
-        child.material = newMaterial;
-      }
-    });
-  });
-}
+//         const newMaterial = new THREE.MeshLambertMaterial({
+//           // color: 0xffffff,
+//           // emissive: 0x000000,
+//           // tranctparency 
+//           transparent: true,
+//           opacity: 1,
+//           wireframe: true,
+//           // visible:true or false,
+//           //FrontSide, BackSide, DoubleSide
+//           side: THREE.DoubleSide,
+//         });     
+//         child.material = newMaterial;
+//       }
+//     });
+//   });
+// }
 
-for (let i = 0; i < 20; i++) {
-  loader.load('./models/mygltf/dol.gltf', function (gltf) {
-    gltfmodel4 = gltf.scene;
-    gltfmodel4.scale.set(44000, 44000, 44000);
-    gltfmodel4.position.set(-2000* Math.random(), 2000* Math.random(), -2000* Math.random())
-    gltfmodel4.rotation.y = 100*Math.random();
-    gltfmodel4.rotation.x = 100*Math.random();
-    gltfmodel4.rotation.z = 100*Math.random();
-    gltfmodel4.castShadow = true;
-    gltfmodel4.receiveShadow = true;
-    scene.add(gltfmodel4);
+// for (let i = 0; i < 20; i++) {
+//   loader.load('./models/mygltf/dol.gltf', function (gltf) {
+//     gltfmodel4 = gltf.scene;
+//     gltfmodel4.scale.set(44000, 44000, 44000);
+//     gltfmodel4.position.set(-2000* Math.random(), 2000* Math.random(), -2000* Math.random())
+//     gltfmodel4.rotation.y = 100*Math.random();
+//     gltfmodel4.rotation.x = 100*Math.random();
+//     gltfmodel4.rotation.z = 100*Math.random();
+//     gltfmodel4.castShadow = true;
+//     gltfmodel4.receiveShadow = true;
+//     scene.add(gltfmodel4);
 
-    gltfmodel4.traverse(child => {
-      if (child.isMesh) {
+//     gltfmodel4.traverse(child => {
+//       if (child.isMesh) {
 
-        const newMaterial = new THREE.MeshLambertMaterial({
-          // color: 0xffffff,
-          // emissive: 0x000000,
-          // tranctparency 
-          transparent: true,
-          opacity: 0.2,
-          wireframe: true,
-          // visible:true or false,
-          //FrontSide, BackSide, DoubleSide
-          side: THREE.DoubleSide,
-        });     
-        child.material = newMaterial;
-      }
-    });
-  });
-}
+//         const newMaterial = new THREE.MeshLambertMaterial({
+//           // color: 0xffffff,
+//           // emissive: 0x000000,
+//           // tranctparency 
+//           transparent: true,
+//           opacity: 0.2,
+//           wireframe: true,
+//           // visible:true or false,
+//           //FrontSide, BackSide, DoubleSide
+//           side: THREE.DoubleSide,
+//         });     
+//         child.material = newMaterial;
+//       }
+//     });
+//   });
+// }
   // const gltf = await gltfLoader.loadAsync('./models/mygltf/character2.gltf');
   // const mygltf = gltf.scene
   // mygltf.position.set(0, 6, 200);
