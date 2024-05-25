@@ -80,7 +80,8 @@ async function init() {
   let gltfmodel8;
   let gltfmodel9;
   let gltfmodel10;
-  let gltfmodel145
+  let gltfmodel145;
+  let gltfmodel1456;
   let a = 0;
   //1cube
   // let geometry = new THREE.DodecahedronGeometry();
@@ -142,7 +143,7 @@ async function init() {
 
   loader.load('./models/mygltf/island new.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
-    gltfmodel1.scale.set(500, 500, 500);
+    gltfmodel1.scale.set(200, 200, 200);
     gltfmodel1.position.set(0, -20, 0)
     gltfmodel1.rotation.z = 0.002;
     gltfmodel1.castShadow = true;
@@ -166,7 +167,7 @@ async function init() {
 
   loader.load('./models/mygltf/human.gltf', function (gltf) {
     gltfmodel145 = gltf.scene;
-    gltfmodel145.scale.set(500, 500, 500);
+    gltfmodel145.scale.set(10, 10, 10);
     gltfmodel145.position.set(100,50,100)
     gltfmodel145.castShadow = true;
     gltfmodel145.receiveShadow = true;
@@ -185,6 +186,29 @@ async function init() {
       }
     });
     scene.add(gltfmodel145);
+  });
+
+  loader.load('./models/mygltf/word1.gltf', function (gltf) {
+    gltfmodel1456 = gltf.scene;
+    gltfmodel1456.scale.set(50, 50, 50);
+    gltfmodel1456.position.set(50,1,50)
+    gltfmodel1456.castShadow = true;
+    gltfmodel1456.receiveShadow = true;
+    
+    gltfmodel1456.traverse(child => {
+      if (child.isMesh) {
+        const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 1,
+        shading: THREE.FlatShading
+      });
+        let pos = child.geometry.attributes.position;
+        child.castShadow = true;
+        child.receiveShadow = true;
+        child.material = material;
+      }
+    });
+    scene.add(gltfmodel1456);
   });
 
 
@@ -374,9 +398,9 @@ for (let i = 0; i < 20; i++) {
       const rotationSpeed = 10; // 회전 속도 (조절 가능)
      light.rotation.x += rotationSpeed;
     }
-
-
-
+    if (gltfmodel1456) {
+      gltfmodel1456.rotation.y += .01;
+    }
   }
 
 
