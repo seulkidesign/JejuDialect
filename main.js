@@ -63,11 +63,11 @@ async function init() {
   const renderPass = new RenderPass(scene, camera);
   composer.addPass(renderPass);
   //해상도, strength, radius, threshold
-  const unrealBloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 120, 100, 100)
-  unrealBloomPass.threshold = 0.1;
-  unrealBloomPass.radius = 1;
-  unrealBloomPass.strength = 100;
-  composer.addPass(unrealBloomPass);
+  // const unrealBloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 120, 100, 100)
+  // unrealBloomPass.threshold = 0.1;
+  // unrealBloomPass.radius = 1;
+  // unrealBloomPass.strength = 100;
+  // composer.addPass(unrealBloomPass);
 
   let gltfmodel;
   let gltfmodel1;
