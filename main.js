@@ -20,8 +20,8 @@ async function init() {
   // let container = document.getElementById( 'webdolRayCaster' );
   container = document.createElement('div');
   document.body.appendChild(container);
-  raycaster = new THREE.Raycaster();
-  mouse = new THREE.Vector2()
+  // raycaster = new THREE.Raycaster();
+  // mouse = new THREE.Vector2()
 
 
   const loadingManager = new THREE.LoadingManager();
@@ -405,7 +405,7 @@ for (let i = 0; i < 20; i++) {
 
 
 
-  window.addEventListener('mousemove', onMove, false);
+  // window.addEventListener('mousemove', onMove, false);
   // window.addEventListener('mousemove', onMoveAll, false);
   window.addEventListener('resize', onWindowResize, false);
 
@@ -417,33 +417,33 @@ for (let i = 0; i < 20; i++) {
       }
     });
   }
-  function onMove() {
+  // function onMove() {
 
-    event.preventDefault();
+  //   event.preventDefault();
 
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    raycaster.setFromCamera(mouse, camera);
+  //   raycaster.setFromCamera(mouse, camera);
 
-    var intersects = raycaster.intersectObject(cube, true);
+  //   var intersects = raycaster.intersectObject(cube, true);
 
-    if (intersects.length > 0) {
+  //   if (intersects.length > 0) {
 
-      var objects = intersects[0].object;
+  //     var objects = intersects[0].object;
 
-      objects.material.color.set(0xfe0000);
-    } else {
-      resetModelColor()
-    }
-    if (intersects.length > 0) {
-      document.body.style.cursor = 'pointer';
-    } else {
-      // 교차된 객체가 없는 경우 기본 커서로 변경
-      document.body.style.cursor = 'auto';
-    }
-    render();
-  }
+  //     objects.material.color.set(0xfe0000);
+  //   } else {
+  //     resetModelColor()
+  //   }
+  //   if (intersects.length > 0) {
+  //     document.body.style.cursor = 'pointer';
+  //   } else {
+  //     // 교차된 객체가 없는 경우 기본 커서로 변경
+  //     document.body.style.cursor = 'auto';
+  //   }
+  //   render();
+  // }
 
 
   function onWindowResize() {
@@ -456,76 +456,76 @@ for (let i = 0; i < 20; i++) {
     render();
 
   }
-  let targetPosition = new THREE.Vector3(10, 10, 10); // 이동할 목표 위치
-  let duration = 1000; // 애니메이션 지속 시간 (밀리초)
-  let startTime = null; // 애니메이션 시작 시간
-  let initialPosition = camera.position.clone(); // 현재 카메라 위치
+  // let targetPosition = new THREE.Vector3(10, 10, 10); // 이동할 목표 위치
+  // let duration = 1000; // 애니메이션 지속 시간 (밀리초)
+  // let startTime = null; // 애니메이션 시작 시간
+  // let initialPosition = camera.position.clone(); // 현재 카메라 위치
 
-  function animateCamera() {
-    let now = Date.now();
-    if (startTime === null) {
-      startTime = now;
-    }
-    let elapsed = now - startTime;
-    let t = Math.min(1, elapsed / duration); // 애니메이션 진행도 (0부터 1까지)
+  // function animateCamera() {
+  //   let now = Date.now();
+  //   if (startTime === null) {
+  //     startTime = now;
+  //   }
+  //   let elapsed = now - startTime;
+  //   let t = Math.min(1, elapsed / duration); // 애니메이션 진행도 (0부터 1까지)
 
-    // 보간된 위치 계산 (선형 보간)
-    let interpolatedPosition = initialPosition.clone().lerp(targetPosition, t);
+  //   // 보간된 위치 계산 (선형 보간)
+  //   let interpolatedPosition = initialPosition.clone().lerp(targetPosition, t);
 
-    // 카메라 위치 설정
-    camera.position.copy(interpolatedPosition);
+  //   // 카메라 위치 설정
+  //   camera.position.copy(interpolatedPosition);
 
-    // 애니메이션 종료 검사
-    if (t < 1) {
-      requestAnimationFrame(animateCamera);
-    } else {
-      controls.enabled = true; // 애니메이션 종료 후 컨트롤 활성화
-    }
-  }
-  function onClick(e) {
-    e.preventDefault();
-    controls.enabled = false;
-    initialPosition = camera.position.clone();
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects([cube], true);
-    if (intersects.length > 0) {
+  //   // 애니메이션 종료 검사
+  //   if (t < 1) {
+  //     requestAnimationFrame(animateCamera);
+  //   } else {
+  //     controls.enabled = true; // 애니메이션 종료 후 컨트롤 활성화
+  //   }
+  // }
+  // function onClick(e) {
+  //   e.preventDefault();
+  //   controls.enabled = false;
+  //   initialPosition = camera.position.clone();
+  //   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  //   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  //   raycaster.setFromCamera(mouse, camera);
+  //   const intersects = raycaster.intersectObjects([cube], true);
+  //   if (intersects.length > 0) {
 
-      // 클릭된 객체의 URL로 새 창 열기
-      // window.open('https://openai.com/index/chatgpt', '_blank');
-      targetPosition.set(100, 10, 50); // 목표 위치 설정
-      startTime = null; // 애니메이션 시작 시간 초기화
-      animateCamera(); // 카메라 애니메이션 시작
+  //     // 클릭된 객체의 URL로 새 창 열기
+  //     // window.open('https://openai.com/index/chatgpt', '_blank');
+  //     targetPosition.set(100, 10, 50); // 목표 위치 설정
+  //     startTime = null; // 애니메이션 시작 시간 초기화
+  //     animateCamera(); // 카메라 애니메이션 시작
 
-    }
-    else {
-      controls.enabled = true;
-    }
-  }
-  window.addEventListener('click', onClick, false);
+  //   }
+  //   else {
+  //     controls.enabled = true;
+  //   }
+  // }
+  // window.addEventListener('click', onClick, false);
 
 
   // 키보드 입력 상태를 저장하는 객체
-  const keys = {
-    ArrowUp: false,
-    ArrowDown: false,
-    ArrowLeft: false,
-    ArrowRight: false
-  };
+  // const keys = {
+  //   ArrowUp: false,
+  //   ArrowDown: false,
+  //   ArrowLeft: false,
+  //   ArrowRight: false
+  // };
 
-  // 키보드 이벤트 리스너 등록
-  window.addEventListener('keydown', (event) => {
-    if (keys.hasOwnProperty(event.code)) {
-      keys[event.code] = true;
-    }
-  });
+  // // 키보드 이벤트 리스너 등록
+  // window.addEventListener('keydown', (event) => {
+  //   if (keys.hasOwnProperty(event.code)) {
+  //     keys[event.code] = true;
+  //   }
+  // });
 
-  window.addEventListener('keyup', (event) => {
-    if (keys.hasOwnProperty(event.code)) {
-      keys[event.code] = false;
-    }
-  });
+  // window.addEventListener('keyup', (event) => {
+  //   if (keys.hasOwnProperty(event.code)) {
+  //     keys[event.code] = false;
+  //   }
+  // });
 
   // // Character의 초기 위치와 이동 속도 정의
   // const cubePosition = new THREE.Vector3(20, 20, 45);
