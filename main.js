@@ -152,15 +152,15 @@ async function init() {
 
     gltfmodel1.traverse(child => {
       if (child.isMesh) {
-        const material = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 1,
-        shading: THREE.FlatShading
-      });
-        let pos = child.geometry.attributes.position;
+      //   const material = new THREE.MeshStandardMaterial({
+      //   color: 0xffffff,
+      //   roughness: 1,
+      //   shading: THREE.FlatShading
+      // });
+      //   let pos = child.geometry.attributes.position;
         child.castShadow = true;
         child.receiveShadow = true;
-        child.material = material;
+      //   child.material = material;
       }
     });
   })
