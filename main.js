@@ -37,7 +37,7 @@ async function init() {
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-  renderer.setPixelRatio(window.devicePixelRatio);//기기에 맞게 pixel value조절
+  // renderer.setPixelRatio(window.devicePixelRatio);//기기에 맞게 pixel value조절
   // renderer.setClearColor(0xf0f0f0);
 
   document.body.appendChild(renderer.domElement)
@@ -143,8 +143,8 @@ async function init() {
 
   loader.load('./models/mygltf/island new.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
-    gltfmodel1.scale.set(200, 200, 200);
-    gltfmodel1.position.set(0, -20, 0)
+    gltfmodel1.scale.set(50, 50, 50);
+    gltfmodel1.position.set(0, -2, 0)
     gltfmodel1.rotation.z = 0.002;
     gltfmodel1.castShadow = true;
     gltfmodel1.receiveShadow = true;
@@ -191,7 +191,7 @@ async function init() {
   loader.load('./models/mygltf/word1.gltf', function (gltf) {
     gltfmodel1456 = gltf.scene;
     gltfmodel1456.scale.set(50, 50, 50);
-    gltfmodel1456.position.set(50,1,50)
+    gltfmodel1456.position.set(50,5,50)
     gltfmodel1456.castShadow = true;
     gltfmodel1456.receiveShadow = true;
     
@@ -394,10 +394,7 @@ async function init() {
       const rotationSpeed = -0.001; // 회전 속도 (조절 가능)
       gltfmodel1.rotation.y += rotationSpeed;
     }
-    if (light) {
-      const rotationSpeed = 10; // 회전 속도 (조절 가능)
-     light.rotation.x += rotationSpeed;
-    }
+
     if (gltfmodel1456) {
       gltfmodel1456.rotation.y += .01;
     }
