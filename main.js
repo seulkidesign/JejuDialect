@@ -14,7 +14,7 @@ async function init() {
   var raycaster, mouse, container;
   //scene, camera, renderer
   let scene = new THREE.Scene();
-  let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+  let camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 500);
   // let mouse = new THREE.Vector2(), SELECTED;
   // let radius = 100, theta = 0;
   // let container = document.getElementById( 'webdolRayCaster' );
@@ -143,8 +143,8 @@ async function init() {
 
   loader.load('./models/mygltf/island new.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
-    gltfmodel1.scale.set(50, 50, 50);
-    gltfmodel1.position.set(0, -2, 0)
+    gltfmodel1.scale.set(1, 1, 1);
+    gltfmodel1.position.set(0, 0, 0)
     gltfmodel1.rotation.z = 0.002;
     gltfmodel1.castShadow = true;
     gltfmodel1.receiveShadow = true;
@@ -167,8 +167,8 @@ async function init() {
 
   loader.load('./models/mygltf/human.gltf', function (gltf) {
     gltfmodel145 = gltf.scene;
-    gltfmodel145.scale.set(10, 10, 10);
-    gltfmodel145.position.set(100,50,100)
+    gltfmodel145.scale.set(1, 1, 1);
+    gltfmodel145.position.set(1,1,1)
     gltfmodel145.castShadow = true;
     gltfmodel145.receiveShadow = true;
     
@@ -190,8 +190,8 @@ async function init() {
 
   loader.load('./models/mygltf/word1.gltf', function (gltf) {
     gltfmodel1456 = gltf.scene;
-    gltfmodel1456.scale.set(50, 50, 50);
-    gltfmodel1456.position.set(50,5,50)
+    gltfmodel1456.scale.set(1, 1, 1);
+    gltfmodel1456.position.set(0.5,-1.5,0)
     gltfmodel1456.castShadow = true;
     gltfmodel1456.receiveShadow = true;
     
@@ -301,14 +301,14 @@ async function init() {
   light.target.position.set(0, 0, 0);
   light.castShadow = true;
   light.receiveShadow = true
-  light.shadow.camera.top = 2500;
-  light.shadow.camera.bottom = -2500;
-  light.shadow.camera.left = 2500;
-  light.shadow.camera.right = -2500;
+  light.shadow.camera.top = 5;
+  light.shadow.camera.bottom = -5;
+  light.shadow.camera.left = 5;
+  light.shadow.camera.right = -5;
   light.shadow.mapSize.width = 8148;
   light.shadow.mapSize.height = 8148;
   light.shadow.camera.near = 1;
-  light.shadow.camera.far = 2000;
+  light.shadow.camera.far = 50;
 
   light.shadow.radius = 1;
   light.shadow.blurSamples = 205;
@@ -322,14 +322,14 @@ async function init() {
   light3.target.position.set(0, 0, 0);
   light3.castShadow = true;
   light3.receiveShadow = true
-  light3.shadow.camera.top = 2500;
-  light3.shadow.camera.bottom = -2500;
-  light3.shadow.camera.left = 2500;
-  light3.shadow.camera.right = -2500;
+  light3.shadow.camera.top = 5;
+  light3.shadow.camera.bottom = -5;
+  light3.shadow.camera.left = 5;
+  light3.shadow.camera.right = -5;
   light3.shadow.mapSize.width = 8148;
   light3.shadow.mapSize.height = 8148;
   light3.shadow.camera.near = 1;
-  light3.shadow.camera.far = 2000;
+  light3.shadow.camera.far = 50;
 
   light3.shadow.radius = 1;
   light3.shadow.blurSamples = 205;
@@ -340,7 +340,7 @@ async function init() {
 //environment light (no shadow, highlight)
   const Light2 = new THREE.AmbientLight(0xffffff, 0.8)
   Light2.castShadow = true;
-  Light2.position.set(0, 900, 0)
+  Light2.position.set(0, 50, 0)
   scene.add(Light2)
 
   // const ambientLight = new THREE.AmbientLight(0xffffff, .3)
@@ -349,7 +349,7 @@ async function init() {
 
 
   //카메라 초기 위치
-  camera.position.set(250, 550, 250); // 시작 위치 (x, y, z)
+  camera.position.set(1, 0, 1); // 시작 위치 (x, y, z)
   camera.lookAt(0, 0, 0);
   // 목표 카메라 위치 설정
   const mytargetPosition = new THREE.Vector3(0, 42, 25);
