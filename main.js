@@ -45,17 +45,19 @@ async function init() {
 
 
 
-  scene.background = new THREE.Color(0x000000)
+  scene.background = new THREE.Color(0xebfff0)
   // scene.fog = new THREE.Fog(0xfff9cf, 1, 0.01) //숫자가 작을수록 뿌옇고 넓음 //위치,정도?
 
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.5;
-  controls.rotateSpeed = 0.75; //OrbitControls로 회전시킬 때 속도 
+  controls.rotateSpeed = 1; //OrbitControls로 회전시킬 때 속도 
   controls.enableDamping = true;
   controls.minDistance = 2; // Minimum distance for zoom
-  controls.maxDistance = 700; // Maximum distance for zoom
+  controls.maxDistance = 20000; // Maximum distance for zoom
+  controls.dampingFactor = 1; // Damping factor for smooth rotation and zoom
+  controls.zoomSpeed = 1; // Adjust this value to control the zoom speed
 
   const composer = new EffectComposer(renderer);
   const renderPass = new RenderPass(scene, camera);
@@ -78,34 +80,35 @@ async function init() {
   let gltfmodel8;
   let gltfmodel9;
   let gltfmodel10;
+  let gltfmodel145
   let a = 0;
   //1cube
-  let geometry = new THREE.DodecahedronGeometry();
+  // let geometry = new THREE.DodecahedronGeometry();
 
-  for (let i = 0; i < 1600; i++) {
-    let grey = Math.random();
-    let object = new THREE.Mesh(
-      geometry,
-      new THREE.MeshPhongMaterial({
-        color: new THREE.Color(0Xbababa),
-        // wireframe: true,
-        opacity:0.4,
-        transparent: true
-      })
-    );
+  // for (let i = 0; i < 1600; i++) {
+  //   let grey = Math.random();
+  //   let object = new THREE.Mesh(
+  //     geometry,
+  //     new THREE.MeshPhongMaterial({
+  //       color: new THREE.Color(0Xbababa),
+  //       // wireframe: true,
+  //       opacity:0.4,
+  //       transparent: true
+  //     })
+  //   );
 
-    object.position.x = Math.random() * 2000 - 800;
-    object.position.y = Math.random() * 2000 - 800;
-    object.position.z = Math.random() * 2000 - 800;
-    object.rotation.x = Math.random() * 2 * Math.PI;
-    object.rotation.y = Math.random() * 2 * Math.PI;
-    object.rotation.z = Math.random() * 2 * Math.PI;
-    // object.scale.set(10, 10, 10)
-    object.scale.x = Math.random() + 25;
-    object.scale.y = Math.random() + 25;
-    object.scale.z = Math.random() + 25;
-    scene.add(object);
-  }
+  //   object.position.x = Math.random() * 2000 - 800;
+  //   object.position.y = Math.random() * 2000 - 800;
+  //   object.position.z = Math.random() * 2000 - 800;
+  //   object.rotation.x = Math.random() * 2 * Math.PI;
+  //   object.rotation.y = Math.random() * 2 * Math.PI;
+  //   object.rotation.z = Math.random() * 2 * Math.PI;
+  //   // object.scale.set(10, 10, 10)
+  //   object.scale.x = Math.random() + 25;
+  //   object.scale.y = Math.random() + 25;
+  //   object.scale.z = Math.random() + 25;
+  //   scene.add(object);
+  // }
 
 
   let loader = new GLTFLoader();
@@ -161,7 +164,28 @@ async function init() {
     });
   })
 
-
+  loader.load('./models/mygltf/human.gltf', function (gltf) {
+    gltfmodel145 = gltf.scene;
+    gltfmodel145.scale.set(500, 500, 500);
+    gltfmodel145.position.set(100,50,100)
+    gltfmodel145.castShadow = true;
+    gltfmodel145.receiveShadow = true;
+    
+    gltfmodel145.traverse(child => {
+      if (child.isMesh) {
+        const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 1,
+        shading: THREE.FlatShading
+      });
+        let pos = child.geometry.attributes.position;
+        child.castShadow = true;
+        child.receiveShadow = true;
+        child.material = material;
+      }
+    });
+    scene.add(gltfmodel145);
+  });
 
 
   for (let i = 0; i < 20; i++) {
@@ -248,7 +272,7 @@ for (let i = 0; i < 20; i++) {
   let HemiLight = new THREE.HemisphereLight(0xffffff, 0xfffff, 0.1);
   scene.add(HemiLight);
 
-  let light = new THREE.DirectionalLight(0xfff9cf, 1.5);
+  let light = new THREE.DirectionalLight(0xfff9cf, 0.5);
   light.position.set(10, 10, 0);
   light.target.position.set(0, 0, 0);
   light.castShadow = true;
@@ -313,41 +337,43 @@ for (let i = 0; i < 20; i++) {
   // camera.position.z = 138;
   // camera.position.y = 125;
 
+
+  //loading camera move 
   //초기 페이지 로드시 애니메이션 
-  function myanimate(timestamp) {
-    if (!animationStart) animationStart = timestamp;
-    const elapsed = timestamp - animationStart;
+  // function myanimate(timestamp) {
+  //   if (!animationStart) animationStart = timestamp;
+  //   const elapsed = timestamp - animationStart;
 
-    // 보간된 카메라 위치 계산 (선형 보간)
-    const progress = Math.min(elapsed / animationDuration, t); // 0부터 1까지의 진행도
-    const interpolatedPosition = new THREE.Vector3()
-      .copy(camera.position)
-      .lerp(mytargetPosition, progress); // 선형 보간
+  //   // 보간된 카메라 위치 계산 (선형 보간)
+  //   const progress = Math.min(elapsed / animationDuration, t); // 0부터 1까지의 진행도
+  //   const interpolatedPosition = new THREE.Vector3()
+  //     .copy(camera.position)
+  //     .lerp(mytargetPosition, progress); // 선형 보간
 
-    camera.position.copy(interpolatedPosition);
+  //   camera.position.copy(interpolatedPosition);
 
-    // 카메라가 목표 위치에 도달하면 애니메이션 종료
-    if (progress < t) {
-      requestAnimationFrame(myanimate);
-    }
-    else {
-      myanimate = false;
-    }
-    renderer.render(scene, camera);
-    // console.log(progress)
-  }
-  requestAnimationFrame(myanimate);
+  //   // 카메라가 목표 위치에 도달하면 애니메이션 종료
+  //   if (progress < t) {
+  //     requestAnimationFrame(myanimate);
+  //   }
+  //   else {
+  //     myanimate = false;
+  //   }
+  //   renderer.render(scene, camera);
+  //   // console.log(progress)
+  // }
+  // requestAnimationFrame(myanimate);
 
   function gltfRotate() {
 
-    if (cube) {
-      const rotationSpeed = -0.01; // 회전 속도 (조절 가능)
-      cube.rotation.z += rotationSpeed;
+    if ( gltfmodel1) {
+      const rotationSpeed = -0.001; // 회전 속도 (조절 가능)
+      gltfmodel1.rotation.y += rotationSpeed;
     }
-    // if (gltfmodel1) {
-    //   const rotationSpeed = 0.0001; // 회전 속도 (조절 가능)
-    //   gltfmodel1.rotation.y += rotationSpeed;
-    // }
+    if (light) {
+      const rotationSpeed = 10; // 회전 속도 (조절 가능)
+     light.rotation.x += rotationSpeed;
+    }
 
 
 
@@ -543,7 +569,7 @@ for (let i = 0; i < 20; i++) {
 
 
     const delta = clock.getDelta();
-    mixer.update(delta);
+    // mixer.update(delta);// 이 값을 지우니 gtfrotate 동작 well
     controls.update();
     gltfRotate();
     // updateCubePosition();
@@ -552,11 +578,11 @@ for (let i = 0; i < 20; i++) {
     renderer.render(scene, camera);
 
     //전체 회전함 
-    // scene.traverse(function (cube) {
-    //   if (cube instanceof THREE.Mesh) {
-    //     cube.rotation.x += 0.01; // X 축 회전
-    //     cube.rotation.y += 0.02; // Y 축 회전
-    //     cube.rotation.z += 0.03; // Z 축 회전
+    // scene.traverse(function ( gltfmodel1) {
+    //   if ( gltfmodel1 instanceof THREE.Mesh) {
+    //      gltfmodel1.rotation.x += 0.01; // X 축 회전
+    //      gltfmodel1.rotation.y += 0.02; // Y 축 회전
+    //      gltfmodel1.rotation.z += 0.03; // Z 축 회전
     //   }
 
     // });
