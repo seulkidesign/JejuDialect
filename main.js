@@ -56,7 +56,7 @@ async function init() {
   controls.enableDamping = true;
   controls.minDistance = 2; // Minimum distance for zoom
   controls.maxDistance = 20000; // Maximum distance for zoom
-  controls.dampingFactor = 1; // Damping factor for smooth rotation and zoom
+  // controls.dampingFactor = 1; // Damping factor for smooth rotation and zoom
   controls.zoomSpeed = 1; // Adjust this value to control the zoom speed
 
   const composer = new EffectComposer(renderer);
@@ -296,7 +296,7 @@ for (let i = 0; i < 20; i++) {
   let HemiLight = new THREE.HemisphereLight(0xffffff, 0xfffff, 0.1);
   scene.add(HemiLight);
 
-  let light = new THREE.DirectionalLight(0xfff9cf, 0.5);
+  let light = new THREE.DirectionalLight(0xfff9cf, 1);
   light.position.set(10, 10, 0);
   light.target.position.set(0, 0, 0);
   light.castShadow = true;
@@ -587,12 +587,12 @@ for (let i = 0; i < 20; i++) {
   //   }
   // });
 
-  const clock = new THREE.Clock();
+  // const clock = new THREE.Clock();
 
   function animate() {
 
 
-    const delta = clock.getDelta();
+    // const delta = clock.getDelta();
     // mixer.update(delta);// 이 값을 지우니 gtfrotate 동작 well
     controls.update();
     gltfRotate();
