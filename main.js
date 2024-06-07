@@ -45,7 +45,7 @@ async function init() {
 
 
 
-  scene.background = new THREE.Color(0xebfff0)
+  scene.background = new THREE.Color(0x130052)
   // scene.fog = new THREE.Fog(0xfff9cf, 1, 0.01) //숫자가 작을수록 뿌옇고 넓음 //위치,정도?
 
 
@@ -117,31 +117,31 @@ async function init() {
 
 
 
-  const cubeGeometry = new THREE.IcosahedronGeometry(2);
-  const cubeMaterial = new THREE.MeshLambertMaterial({
-    // color: new THREE.Color(0xcc99ff),
-    color: 0x4a7aff,
-    emissive: 0x4a7aff,
-    // tranctparency 
-    transparent: true,
-    // wireframe:true,
-    // opacity: 0.8,
-    // visible:true or false,
-    //FrontSide, BackSide, DoubleSide
-    side: THREE.DoubleSide,
-  });
-  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-  cube.position.set(50, 20, -40);
-  cube.scale.set(8, 8, 8)
+  // const cubeGeometry = new THREE.IcosahedronGeometry(2);
+  // const cubeMaterial = new THREE.MeshLambertMaterial({
+  //   // color: new THREE.Color(0xcc99ff),
+  //   color: 0x4a7aff,
+  //   emissive: 0x4a7aff,
+  //   // tranctparency 
+  //   transparent: true,
+  //   // wireframe:true,
+  //   // opacity: 0.8,
+  //   // visible:true or false,
+  //   //FrontSide, BackSide, DoubleSide
+  //   side: THREE.DoubleSide,
+  // });
+  // const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+  // cube.position.set(50, 20, -40);
+  // cube.scale.set(8, 8, 8)
 
-  // if (intersects.length > 0) {
-  //   window.open(intersects[0].object.userData.URL);
-  // }
-  scene.add(cube);
+  // // if (intersects.length > 0) {
+  // //   window.open(intersects[0].object.userData.URL);
+  // // }
+  // scene.add(cube);
 
 
 
-  loader.load('./models/mygltf/island new.gltf', function (gltf) {
+  loader.load('./models/mygltf/test.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
     gltfmodel1.scale.set(1, 1, 1);
     gltfmodel1.position.set(0, 0, 0)
@@ -621,7 +621,7 @@ async function init() {
 
   animate()
 
-
+ 
 
 
 }
