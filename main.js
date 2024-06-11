@@ -37,7 +37,7 @@ async function init() {
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-  // renderer.setPixelRatio(window.devicePixelRatio);//기기에 맞게 pixel value조절
+  renderer.setPixelRatio(window.devicePixelRatio);//기기에 맞게 pixel value조절
   // renderer.setClearColor(0xf0f0f0);
 
   document.body.appendChild(renderer.domElement)
@@ -45,7 +45,7 @@ async function init() {
 
 
 
-  scene.background = new THREE.Color(0x130052)
+  scene.background = new THREE.Color(0x0070CF)
   // scene.fog = new THREE.Fog(0xfff9cf, 1, 0.01) //숫자가 작을수록 뿌옇고 넓음 //위치,정도?
 
 
@@ -69,20 +69,9 @@ async function init() {
   // unrealBloomPass.strength = 100;
   // composer.addPass(unrealBloomPass);
 
-  let gltfmodel;
+
   let gltfmodel1;
-  let gltfmodel2;
-  let gltfmodel3;
-  let gltfmodel4;
-  let gltfmodel5;
-  let gltfmodel6;
-  let gltfmodel7;
-  let gltfmodel8;
-  let gltfmodel9;
-  let gltfmodel10;
-  let gltfmodel145;
-  let gltfmodel1456;
-  let a = 0;
+
   //1cube
   // let geometry = new THREE.DodecahedronGeometry();
 
@@ -141,7 +130,7 @@ async function init() {
 
 
 
-  loader.load('./models/mygltf/test.gltf', function (gltf) {
+  loader.load('./models/mygltf/typoisland.gltf', function (gltf) {
     gltfmodel1 = gltf.scene;
     gltfmodel1.scale.set(1, 1, 1);
     gltfmodel1.position.set(0, 0, 0)
@@ -165,51 +154,6 @@ async function init() {
     });
   })
 
-  loader.load('./models/mygltf/human.gltf', function (gltf) {
-    gltfmodel145 = gltf.scene;
-    gltfmodel145.scale.set(1, 1, 1);
-    gltfmodel145.position.set(1,1,1)
-    gltfmodel145.castShadow = true;
-    gltfmodel145.receiveShadow = true;
-    
-    gltfmodel145.traverse(child => {
-      if (child.isMesh) {
-        const material = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 1,
-        shading: THREE.FlatShading
-      });
-        let pos = child.geometry.attributes.position;
-        child.castShadow = true;
-        child.receiveShadow = true;
-        child.material = material;
-      }
-    });
-    scene.add(gltfmodel145);
-  });
-
-  loader.load('./models/mygltf/word1.gltf', function (gltf) {
-    gltfmodel1456 = gltf.scene;
-    gltfmodel1456.scale.set(1, 1, 1);
-    gltfmodel1456.position.set(0.5,-1.5,0)
-    gltfmodel1456.castShadow = true;
-    gltfmodel1456.receiveShadow = true;
-    
-    gltfmodel1456.traverse(child => {
-      if (child.isMesh) {
-        const material = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 1,
-        shading: THREE.FlatShading
-      });
-        let pos = child.geometry.attributes.position;
-        child.castShadow = true;
-        child.receiveShadow = true;
-        child.material = material;
-      }
-    });
-    scene.add(gltfmodel1456);
-  });
 
 
 //   for (let i = 0; i < 20; i++) {
@@ -293,11 +237,11 @@ async function init() {
   // scene.add(mygltf);
   
 //하늘에서 오는 빛과 지면에 닿는 빛 
-  let HemiLight = new THREE.HemisphereLight(0xffffff, 0xfffff, 0.1);
+  let HemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.1);
   scene.add(HemiLight);
 
   let light = new THREE.DirectionalLight(0xfff9cf, 1);
-  light.position.set(10, 10, 0);
+  light.position.set(10, 20, 0);
   light.target.position.set(0, 0, 0);
   light.castShadow = true;
   light.receiveShadow = true
@@ -311,14 +255,14 @@ async function init() {
   light.shadow.camera.far = 50;
 
   light.shadow.radius = 1;
-  light.shadow.blurSamples = 205;
+  light.shadow.blurSamples = 25;
   light.shadow.focus = 1;
   light.shadow.bias = -0.001;;
 ;
   scene.add(light);
 
-  let light3 = new THREE.DirectionalLight(0xffffff, 1.5);
-  light3.position.set(-10, 6, 0);
+  let light3 = new THREE.DirectionalLight(0xffffff, 2.5);
+  light3.position.set(-10, 16, 0);
   light3.target.position.set(0, 0, 0);
   light3.castShadow = true;
   light3.receiveShadow = true
@@ -332,15 +276,15 @@ async function init() {
   light3.shadow.camera.far = 50;
 
   light3.shadow.radius = 1;
-  light3.shadow.blurSamples = 205;
+  light3.shadow.blurSamples = 25;
   light3.shadow.focus = 1;
   light3.shadow.bias = -0.001;;
 ;
   scene.add(light3);
 //environment light (no shadow, highlight)
-  const Light2 = new THREE.AmbientLight(0xffffff, 0.8)
+  const Light2 = new THREE.AmbientLight(0xffffff, 0.5)
   Light2.castShadow = true;
-  Light2.position.set(0, 50, 0)
+  Light2.position.set(0, 15, 0)
   scene.add(Light2)
 
   // const ambientLight = new THREE.AmbientLight(0xffffff, .3)
@@ -351,13 +295,7 @@ async function init() {
   //카메라 초기 위치
   camera.position.set(1, 0, 1); // 시작 위치 (x, y, z)
   camera.lookAt(0, 0, 0);
-  // 목표 카메라 위치 설정
-  const mytargetPosition = new THREE.Vector3(0, 42, 25);
-  // 애니메이션 변수 설정
-  const animationDuration = 80000; // 애니메이션 지속 시간 (ms)
 
-  let animationStart = null;
-  let t = 0.05;
   // camera.position.z = 138;
   // camera.position.y = 125;
 
@@ -388,32 +326,23 @@ async function init() {
   // }
   // requestAnimationFrame(myanimate);
 
-  function gltfRotate() {
+  // function gltfRotate() {
 
-    if ( gltfmodel1) {
-      const rotationSpeed = -0.001; // 회전 속도 (조절 가능)
-      gltfmodel1.rotation.y += rotationSpeed;
-    }
+  //   if ( gltfmodel1) {
+  //     const rotationSpeed = -0.001; // 회전 속도 (조절 가능)
+  //     gltfmodel1.rotation.y += rotationSpeed;
+  //   }
 
-    if (gltfmodel1456) {
-      gltfmodel1456.rotation.y += .01;
-    }
-  }
+  //   if (gltfmodel1456) {
+  //     gltfmodel1456.rotation.y += .01;
+  //   }
+  // }
 
 
 
   // window.addEventListener('mousemove', onMove, false);
   // window.addEventListener('mousemove', onMoveAll, false);
   window.addEventListener('resize', onWindowResize, false);
-
-  function resetModelColor() {
-    cube.traverse(function (node) {
-      if (cube.isMesh) {
-        // 원래의 색상으로 설정 (여기서는 하얀색)
-        node.material.color.set(0xffffff);
-      }
-    });
-  }
   // function onMove() {
 
   //   event.preventDefault();
@@ -592,7 +521,7 @@ async function init() {
     // const delta = clock.getDelta();
     // mixer.update(delta);// 이 값을 지우니 gtfrotate 동작 well
     controls.update();
-    gltfRotate();
+    // gltfRotate();
     // updateCubePosition();
 
     composer.render();
